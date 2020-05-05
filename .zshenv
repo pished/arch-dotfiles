@@ -10,6 +10,7 @@ path=(
   /usr/local/{bin,sbin}
   ${HOME}/bin
   ${GOPATH}/bin
+  ${HOME}/.node_modules/bin
 )
 export PATH
 

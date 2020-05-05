@@ -17,3 +17,10 @@ compinit
 alias ls='ls --color=auto'
 alias vim='nvim'
 alias dotfiles='/usr/bin/git --git-dir=$HOME/.dotfiles/ --work-tree=$HOME'
+alias cbspwm='nvim ~/.config/bspwm/bspwmrc'
+alias csxhkd='nvim ~/.config/sxhkd/sxhkdrc'
+
+[ -f ~/.fzf.zsh ] && source ~/.fzf.zsh
+
+# Fortune on new shell
+cowthink -f small $(fortune)

@@ -1,4 +1,4 @@
-#!/bin/sh
+#!/bin/bash
 
 userresources=$HOME/.Xresources
 usermodmap=$HOME/.Xmodmap
@@ -38,7 +38,13 @@ fi
 # xterm -geometry 80x20+494-0 &
 # exec xterm -geometry 80x66+0+0 -name login
 
-xrandr --output HDMI-0 2560-1440 --rate 143
-xrandr --output HDMI-1 2560-1440 --rate 143
+xrandr --output HDMI-0 --primary --mode 2560x1440 --rate 143 --output HDMI-1 --mode 2560x1440 --rate 143 --right-of HDMI-0 &
 
-exec i3
+wal -R &
+exec bspwm
+#exec i3
+# exec startplasma-x11
+# exec awesome
+
+# Apply most recent pywal effect
+# wal -i ~/img/wallpapers/
