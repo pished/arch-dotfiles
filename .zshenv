@@ -11,6 +11,7 @@ path=(
   ${HOME}/bin
   ${GOPATH}/bin
   ${HOME}/.node_modules/bin
+  ${HOME}/.dotnet/tools
 )
 export PATH
 

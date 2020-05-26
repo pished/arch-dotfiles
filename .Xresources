@@ -93,7 +93,7 @@ URxvt.keysym.M-C-v:		perl:clipboard:paste_escaped
 URxvt.keysym.M-Escape:	perl:keyboard-select:activate
 URxvt.keysym.M-s:		perl:keyboard-select:search
 URxvt.keysym.M-u:		perl:url-select:select_next
-URxvt.urlLauncher:		firefox
+URxvt.urlLauncher:		chromium
 URxvt.underlineURLs:	true
 URxvt.urlButton:		1     
 

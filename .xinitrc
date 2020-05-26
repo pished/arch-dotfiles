@@ -40,11 +40,11 @@ fi
 
 xrandr --output HDMI-0 --primary --mode 2560x1440 --rate 143 --output HDMI-1 --mode 2560x1440 --rate 143 --right-of HDMI-0 &
 
-wal -R &
+wal -R -a 90 &
 exec bspwm
 #exec i3
 # exec startplasma-x11
 # exec awesome
 
 # Apply most recent pywal effect
-# wal -i ~/img/wallpapers/
+# wal -i ~/img/wallpapers/ -o ~/.config/wal/wal-set
