@@ -38,9 +38,11 @@ fi
 # xterm -geometry 80x20+494-0 &
 # exec xterm -geometry 80x66+0+0 -name login
 
-xrandr --output HDMI-0 --primary --mode 2560x1440 --rate 143 --output HDMI-1 --mode 2560x1440 --rate 143 --right-of HDMI-0 &
+# xrandr --output HDMI-0 --primary --mode 2560x1440 --rate 143 --pos 0x560 --output HDMI-1 --mode 2560x1440 --rate 143 --rotate right --pos 2560x0 --right-of HDMI-0 &
 
-wal -R -a 90 &
+xrandr --output DVI-D-0 --off --output HDMI-0 --primary --mode 2560x1440 --pos 0x651 --rotate normal --output HDMI-1 --mode 2560x1440 --pos 2560x0 --rotate right --output DP-0 --off --output DP-1 --off --output DP-2 --off --output DP-3 --off
+
+# wal -R -a 90 &
 exec bspwm
 #exec i3
 # exec startplasma-x11

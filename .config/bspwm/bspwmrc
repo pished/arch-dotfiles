@@ -4,12 +4,13 @@
 . "${HOME}/.cache/wal/colors.sh"
 
 sxhkd &
+picom -b
 
 bspc monitor HDMI-0 -d I II III 
 bspc monitor HDMI-1 -d IV V VI VII VIII IX X
 
-bspc config border_width         2
-bspc config window_gap          12
+bspc config border_width         4
+bspc config window_gap           8
 
 # Set border colors
 bspc config normal_border_color "$color1"
@@ -25,3 +26,15 @@ bspc rule -a Gimp desktop='^8' state=floating follow=on
 bspc rule -a mplayer2 state=floating
 bspc rule -a Kupfer.py focus=on
 bspc rule -a Screenkey manage=off
+
+# --------------------------------------------
+# ------------- Non-BSPWM related ------------
+# --------------------------------------------
+xrdb -load ~/.Xresources #reload Xresources
+# launch polybar
+# set wallpaper
+xsetroot -cursor_name left_ptr &
+
+# ------------- Autostart apps ---------------
+# Polybar launch
+$HOME/.config/polybar/launch.sh

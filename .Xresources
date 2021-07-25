@@ -2,42 +2,10 @@
 ! Color Configuration
 ! ------------------------------------------------------------------------------
 
-! special
-*.foreground:   #DEDED7
-*.background:   #0D0F31
-*.cursorColor:  #C9517C
-
-! black
-*.color0  : #020207
-*.color8  : #020207
-
-! red
-*.color1  : #DD149E
-*.color9  : #DD149E
-
-! green
-*.color2  : #9CD45B
-*.color10 : #9CD45B
-
-! yellow
-*.color3  : #DECB19
-*.color11 : #DECB19
-
-! blue
-*.color4  : #3EA5E2
-*.color12 : #3EA5E2
-
-! magenta
-*.color5  : #D806DE
-*.color13 : #D806DE
-
-! cyan
-*.color6  : #4EC4CA
-*.color14 : #4EC4CA
-
-! white
-*.color7  : #DEDEE2
-*.color15 : #DEDEE2
+#include "./.config/X11/onedark"
+! #include "./.config/X11/dracula"
+! #include "./.config/X11/nord"
+! #include "./.config/X11/gruvbox"
 
 ! ------------------------------------------------------------------------------
 ! Font configuration
