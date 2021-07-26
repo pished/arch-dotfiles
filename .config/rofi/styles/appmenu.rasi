@@ -1,19 +1,4 @@
-configuration {
-    font                : "Inter 12.5";
-    show-icons          : true;
-    drun-display-format : "{name}";
-    disable-history     : false;
-    fullscreen          : false;
-    hide-scrollbar      : true;
-    sidebar-mode        : false;
-    display-ssh:    "";
-    display-run:    "";
-    display-drun:   "";
-    display-window: "";
-    display-combi:  "";
-}
-
-@import "./colors/simple.rasi"
+@import "../colors/simple.rasi"
 
 window {
     transparency:                   "real";
@@ -23,47 +8,38 @@ window {
     border-color:		    @ac;
     border-radius:                  5px;
     width:			    40%;
+    height:                         40%;
     location:                       center;
     x-offset:                       0;
-    y-offset:                       0;
+    y-offset:                       -100;
 }
 
 prompt {
-    enabled: 			    true;
-    padding: 			    0.30% 1% 0% -0.5%;
-    background-color: 		    @al;
-    text-color: 		    @fg;
+    enabled: 			    false;
 }
 
 entry {
     background-color:               @al;
     text-color:                     @fg;
-    placeholder-color:              @fg;
+    placeholder-color:              @pg;
     expand:                         true;
     horizontal-align:               0;
-    placeholder:                    "";
+    placeholder:                    "Search";
     padding:                        0.10% 0% 0% 0%;
-    blink:                          true;
+    blink:                          false;
 }
 
 inputbar {
-    children: 			    [ prompt, entry ];
-    background-color:               @bg;
-    text-color:                     @bg;
-    expand:                         false;
-    border:			    0% 0% 0% 0%;
-    border-radius:                  5px;
-    border-color:		    @ac;
-    margin:                         0% 0% 0% 0%;
-    padding:                        1.5%;
+    background-color:               @ac;
 }
 
 listview {
-    cycle:                          true;
     background-color:               @al;
-    padding:                        10px;
+    padding:                        5px;
+    columns:                        1;
     lines:                          10;
     spacing:                        0%;
+    cycle:                          true;
     dynamic:                        true;
     layout:                         vertical;
 }
@@ -87,7 +63,7 @@ element {
 }
 
 element-icon {
-    size:                           24px;
+    size:                           40px;
     border:                         0px;
 }
 
@@ -102,6 +78,6 @@ element selected {
     background-color:               @ac;
     text-color:                     @fg;
     border:			    0% 0% 0% 0%;
-    border-radius:                  0px;
+    border-radius:                  5px;
     border-color:                   @bg;
 }
