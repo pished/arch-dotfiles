@@ -4,7 +4,7 @@ path=(
   /usr/{bin,sbin}
   /usr/local/{bin,sbin}
   ${HOME}/.local/bin
-  ${HOME}/bin
+  ${HOME}/bin/scripts
   ${GOPATH}/bin
   ${HOME}/.node_modules/bin
   ${HOME}/.dotnet/tools
@@ -41,13 +41,6 @@ export FZF_CTRL_T_COMMAND=$FZF_DEFAULT_COMMAND
 export FZF_CTRL_T_OPTS="--preview 'bat --theme=OneHalfDark --color=always --line-range :50 {}'"
 export FZF_ALT_C_COMMAND='fd --type d . --hidden'
 export FZF_ALT_C_OPTS="--preview 'tree -C {} | head -50'"
-
-# Lol dont steal
-export SPOTIFY_CLIENT_ID="875e022f32964ad896884d289b522914"
-export SPOTIFY_CLIENT_SECRET="f04b87f1d287486e8bd5bdc4d10ea384"
-
-export AWS_ACCESS_KEY_ID="AKIA4V2XLSZR3MGA6XQU"
-export AWS_SECRET_ACCESS_KEY="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"
 
 export npm_config_prefix=~/.node_modules
 

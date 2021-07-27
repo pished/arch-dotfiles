@@ -34,6 +34,8 @@ function zsh_add_plugin() {
 zsh_add_file "prompt.zsh"
 # aliases
 zsh_add_file "aliasrc"
+# extra?
+zsh_add_file "extraenvrc"
 # Exports
 [ -f ~/.zshenv ] && source ~/.zshenv
 
@@ -57,6 +59,25 @@ zsh_menu=~/.config/zsh/plugins/menu.zsh
 [ -f $fzf_completion ] && source $fzf_completion
 [ -f $zsh_menu ] && source $zsh_menu
 [ -f $colored_man ] && source $colored_man
+
+# type "zoxide" >/dev/null && eval "$(zoxide init zsh)" # a replacement for cd
+
+# add title to terminal to display state,currently executing command, current directory...
+autoload -Uz add-zsh-hook
+function xterm_title_precmd () {
+	print -Pn -- '\e]2;%n@%m %~\a'
+	[[ "$TERM" == 'screen'* ]] && print -Pn -- '\e_\005{g}%n\005{-}@\005{m}%m\005{-} \005{B}%~\005{-}\e\\'
+}
+
+function xterm_title_preexec () {
+	print -Pn -- '\e]2;%n@%m %~ %# ' && print -n -- "${(q)1}\a"
+	[[ "$TERM" == 'screen'* ]] && { print -Pn -- '\e_\005{g}%n\005{-}@\005{m}%m\005{-} \005{B}%~\005{-} %# ' && print -n -- "${(q)1}\e\\"; }
+}
+
+if [[ "$TERM" == (alacritty*|gnome*|konsole*|putty*|rxvt*|screen*|tmux*|xterm*) ]]; then
+	add-zsh-hook -Uz precmd xterm_title_precmd
+	add-zsh-hook -Uz preexec xterm_title_preexec
+fi
 
 #################################################################
 # Alias								#

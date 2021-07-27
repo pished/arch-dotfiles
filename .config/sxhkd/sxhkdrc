@@ -1,8 +1,12 @@
-#
-# wm independent hotkeys
+# --------------------------------------------
+# ---------------- WM Hotkeys ----------------
+# --------------------------------------------
 # terminal emulator
 super + Return
 	$TERMINAL
+
+super + shift + Return
+	bspwmfloat $TERMINAL
 
 # program launcher
 super + @space
@@ -11,9 +15,46 @@ super + @space
 super + d
 	rofi -show drun
 
+# Browser
+super + w
+	$BROWSER
+
+# file manager
+super + e
+	$TERMINAL -e lf
+
+# Notes
+super + n
+	bspwmfloat $TERMINAL -e ~/bin/scripts/notetaker
+
+# music player
+super + p
+  bspwmfloat $TERMINAL -e ncmpcpp
+
+# RSS feed
+super + r
+  $TERMINAL -e newsboat
+
+# program launcher
+super + space
+	appmenu
+
+# music
+super + {F4, F5}
+	{mpc pause; dunstify "Song Paused", \
+	mpc play; dunstify "$(mpc --format '%title% \n%artist% - %album%' current)"}
+
+super + {F6, F7}
+	{mpc prev; dunstify "$(mpc --format '%title% \n%artist% - %album%' current)", \
+	mpc next; dunstify "$(mpc --format '%title% \n%artist% - %album%' current)"}
+
+# screenshot
+super + shift + s
+	flameshot gui -p ~/imgs/screenshots
+
 # make sxhkd reload its configuration files:
 super + Escape
-	pkill -USR1 -x sxhkd
+	pkill -USR1 -x sxhkd; dunstify "sxhkd config reloaded"
 
 #
 # bspwm hotkeys
@@ -24,7 +65,7 @@ super + alt + {q,r}
 	bspc {quit,wm -r}
 
 super + shift r
-    bspc wm -r
+    bspc wm -r; dunstify "bspwm config reloaded"
 
 # close and kill
 super + {_,shift + }w
