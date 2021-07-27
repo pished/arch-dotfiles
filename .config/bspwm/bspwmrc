@@ -47,3 +47,6 @@ flameshot &
 # Dunst notification daemon
 killall "dunst"
 dunst &
+# Greenclip clipboard manager
+killall "greenclip"
+greenclip daemon &
