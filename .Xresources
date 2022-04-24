@@ -1,0 +1,20 @@
+! ------------------------------------------------------------------------------
+! Color Configuration
+! ------------------------------------------------------------------------------
+
+#include "./.config/X11/onedark"
+! #include "./.config/X11/dracula"
+! #include "./.config/X11/nord"
+! #include "./.config/X11/gruvbox"
+
+! ------------------------------------------------------------------------------
+! Xft Font Configuration
+! ------------------------------------------------------------------------------
+
+Xft.dpi: 96
+Xft.antialias: true
+Xft.hinting: true
+Xft.rgba: rgb
+Xft.autohint: false
+Xft.hintstyle: hintslight
+Xft.lcdfilter: lcddefault
