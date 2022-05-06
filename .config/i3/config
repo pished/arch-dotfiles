@@ -1,46 +1,98 @@
-#####################################################################################
-# Env setup
-#####################################################################################
+#######################################################################
+#                Mod key (Mod1=<Alt>, Mod4=<Super>)                   #
+#######################################################################
 set $mod Mod4
-set $browser --no-startup-id chromium
-set $term --no-startup-id urxvt
-set $file ranger
+set $browser --no-startup-id google-chrome-stable
+set $term --no-startup-id kitty
+set $file --no-startup-id ranger
 
 font pango:Ubuntu Nerd Font Complete 8
-# font pango:DejaVu Sans Mono 8
 
+#######################################################################
+#                                 Gaps                                #
+#######################################################################
+gaps inner 10
+gaps outer 20
+
+# Only enable gaps on a workspace when there is at least one container
+smart_gaps on
+
+# Only enable outer gaps when there is exactly one container
+smart_gaps inverse_outer
+
+# Activate smart borders (always)
+smart_borders on
+
+# Activate smart borders (only when there are effectively no gaps)
+smart_borders no_gaps
+
+#######################################################################
+#                              Window borders                         #
+#######################################################################
+
+# class                 border  backgr. text    indicator child_border
+#client.focused          #96CDFB #96CDFB #96CDFB #96CDFB   #96CDFB
+#client.focused_inactive #055494 #055494 #055494 #055494   #055494
+#client.unfocused	#055494 #055494 #055494 #055494   #055494
+
+# Disable window titlebars
+for_window [class="^.*"] border pixel 2
+
+#######################################################################
+#                               Keybindings                           #
+#######################################################################
+# Font for window titles. Will also be used by the bar unless a different font
+# is used in the bar {} block below.
+
+# This font is widely installed, provides lots of unicode glyphs, right-to-left
+# text rendering and scalability on retina/hidpi displays (thanks to pango).
+#font pango:DejaVu Sans Mono 8
+
+# Start XDG autostart .desktop files using dex. See also
+# https://wiki.archlinux.org/index.php/XDG_Autostart
+exec --no-startup-id dex --autostart --environment i3
+exec --no-startup-id nm-applet
+
+# Use pactl to adjust volume in PulseAudio.
+# set $refresh_i3status killall -SIGUSR1 i3status
+# bindsym XF86AudioRaiseVolume exec --no-startup-id pactl set-sink-volume @DEFAULT_SINK@ +10% && $refresh_i3status
+# bindsym XF86AudioLowerVolume exec --no-startup-id pactl set-sink-volume @DEFAULT_SINK@ -10% && $refresh_i3status
+# bindsym XF86AudioMute exec --no-startup-id pactl set-sink-mute @DEFAULT_SINK@ toggle && $refresh_i3status
+# bindsym XF86AudioMicMute exec --no-startup-id pactl set-source-mute @DEFAULT_SOURCE@ toggle && $refresh_i3status
+
+
+# start dmenu (a program launcher)
+# bindsym $mod+d exec --no-startup-id dmenu_run
+# A more modern dmenu replacement is rofi:
+# bindcode $mod+40 exec "rofi -modi drun,run -show drun"
+# There also is i3-dmenu-desktop which only displays applications shipping a
+# .desktop file. It is a wrapper around dmenu, so you need that installed.
+# bindcode $mod+40 exec --no-startup-id i3-dmenu-desktop
+
+# change focus between tiling / floating windows
+
+#######################################################################
+#                               Keybindings                           #
+#######################################################################
 # Use Mouse+$mod to drag floating windows to their wanted position
 floating_modifier $mod
 
-for_window [class=".*"] border pixel 2
-gaps outer 5
-gaps inner 10
-
-exec feh --bg-scale ~/imgs/wallpapers/cyber-city.jpg
-
-# exec_always --no-startup-id $HOME/.config/polybar/launch.sh
-
-#####################################################################################
-# Keybinds
-#####################################################################################
-# start a terminal
-bindsym $mod+Return 	exec urxvt
+# Start a terminal
+bindsym $mod+Return exec $term
 
 bindsym $mod+period 	split h
-bindsym $mod+semicolon 	split v
-bindsym $mod+slash	split vertical ;; exec $term
-bindsym $mod+apostrophe	split horizontal ;; exec $term
-
+bindsym $mod+slash	    split v 
+# Kill focused window
 bindsym $mod+q			kill
-bindsym $mod+Shift+q		kill
+bindsym $mod+Shift+q	kill
+bindsym $mod+w			kill
 
-bindsym $mod+Shift+e 		exec "i3-nagbar -t warning -m 'You pressed the exit shortcut. Do you really want to exit i3? This will end your X session.' -B 'Yes, exit i3' 'i3-msg exit'"
+bindsym $mod+Shift+e exec "i3-nagbar -t warning -m 'You pressed the exit shortcut.\
+ Do you really want to exit i3? This will end your X session.' -B 'Yes, exit i3' 'i3-msg exit'"
 
-bindsym $mod+r 			mode "resize"
+bindsym $mod+r mode "resize"
 bindsym $mod+Shift+r restart
 
-bindsym $mod+t			split toggle
-bindsym $mod+Shift+t		gaps inner current set 10; gaps outer current set 5
 
 bindsym $mod+o			sticky toggle
 
@@ -66,10 +118,8 @@ bindsym $mod+Shift+k		move up
 bindsym $mod+l			focus right
 bindsym $mod+Shift+l		move right
 
-bindsym $mod+z			gaps outer current plus 2
-bindsym $mod+Shift+z		gaps outer current minus 2
-
 bindsym $mod+c 			layout stacking
+bindsym $mod+Shift+c reload
 
 bindsym $mod+v 			layout tabbed
 
@@ -82,9 +132,55 @@ bindsym $mod+Shift+n		floating toggle; sticky toggle; exec --no-startup-id hover
 bindsym $mod+space 		focus mode_toggle
 bindsym $mod+Shift+space 	floating toggle
 
-#####################################################################################
-# Workspaces
-#####################################################################################
+bindsym $mod+t			split toggle
+bindsym $mod+Shift+t	gaps inner current set 10; gaps outer current set 5
+
+# Start rofi
+# bindsym $mod+space exec "rofi -show"
+
+# Launch browser
+bindsym $mod+x exec "google-chrome-stable"
+
+# Lock screen
+# bindsym F1 exec "betterlockscreen --lock blur"
+
+# Move focus of the windows
+bindsym $mod+Left focus left
+bindsym $mod+Down focus down
+bindsym $mod+Up focus up
+bindsym $mod+Right focus right
+
+# Move windows around the space
+bindsym $mod+Shift+Left move left
+bindsym $mod+Shift+Down move down
+bindsym $mod+Shift+Up move up
+bindsym $mod+Shift+Right move right
+
+
+# focus the parent container
+bindsym $mod+z focus parent
+
+# focus the child container
+bindsym $mod+Shift+z focus child
+
+# Use pactl to adjust the volume with pulseaudio
+# Comment this in case you want to use volumeicon
+bindsym XF86AudioRaiseVolume exec --no-startup-id "pactl set-sink-volume @DEFAULT_SINK@ +5%"; \
+	exec --no-startup-id "pactl set-sink-mute @DEFAULT_SINK@ false"
+bindsym XF86AudioLowerVolume exec --no-startup-id "pactl set-sink-volume @DEFAULT_SINK@ -5%"; \
+	exec --no-startup-id "pactl set-sink-mute @DEFAULT_SINK@ false" 
+bindsym XF86AudioMute exec --no-startup-id pactl set-sink-mute @DEFAULT_SINK@ toggle
+# Mute microphone
+bindsym F8 exec amixer set Capture toggle && amixer get Capture | \
+grep "\[off\]" && notify-send "MIC switched OFF" || notify-send "MIC switched ON"
+
+
+##############
+# Workspaces #
+##############
+
+# Define names for default workspaces for which we configure key bindings later on.
+# We use variables to avoid repeating the names in multiple places.
 set $ws1 "1"
 set $ws2 "2"
 set $ws3 "3"
@@ -92,21 +188,15 @@ set $ws4 "4"
 set $ws5 "5"
 set $ws6 "6"
 set $ws7 "7"
-set $ws8 "8"
-set $ws9 "9"
-set $ws10 "10"
 
 # switch to workspace
-bindsym $mod+1 workspace $ws1
+bindsym $mod+1 workspace $ws1 
 bindsym $mod+2 workspace $ws2
 bindsym $mod+3 workspace $ws3
 bindsym $mod+4 workspace $ws4
 bindsym $mod+5 workspace $ws5
 bindsym $mod+6 workspace $ws6
 bindsym $mod+7 workspace $ws7
-bindsym $mod+8 workspace $ws8
-bindsym $mod+9 workspace $ws9
-bindsym $mod+0 workspace $ws10
 
 # move focused container to workspace
 bindsym $mod+Shift+1 move container to workspace $ws1
@@ -116,13 +206,47 @@ bindsym $mod+Shift+4 move container to workspace $ws4
 bindsym $mod+Shift+5 move container to workspace $ws5
 bindsym $mod+Shift+6 move container to workspace $ws6
 bindsym $mod+Shift+7 move container to workspace $ws7
-bindsym $mod+Shift+8 move container to workspace $ws8
-bindsym $mod+Shift+9 move container to workspace $ws9
-bindsym $mod+Shift+0 move container to workspace $ws10
 
-#####################################################################################
-# Misc
-#####################################################################################
+# Open applications in certain workspaces
+#assign [class="^firefox$"] → $ws1
+#assign [class="^Tor Browser$"] → $ws1
+#assign [class="^Alacritty$"] → $ws2
+#assign [class="^code-oss$"] → $ws3
+#assign [class="^Zathura$"] → $ws4
+#assign [instance="^libreoffice$"] → $ws4
+#assign [class="^mpv$"] → $ws5
+#assign [class="^TelegramDesktop$"] → $ws6
+#assign [class="^discord$"] → $ws7
+#assign [class="^Spotify$"] → $ws7
+
+# Focus window opened automatically
+for_window [class="."] focus
+
+#########################
+#	Scratchpad	#
+#########################
+
+# Make the currently focused window a scratchpad
+bindsym $mod+Shift+u move scratchpad
+
+# Show the first scratchpad window
+bindsym $mod+u scratchpad show
+
+### Put workspaces on specific monitors ###
+
+# Monitor 1
+workspace $ws1 output DP-0
+workspace $ws2 output DP-0
+workspace $ws3 output DP-0
+
+# Monitor 2
+workspace $ws4 output HDMI-0
+workspace $ws5 output HDMI-0
+workspace $ws6 output HDMI-0
+
+
+
+# Enter resize mode
 mode "resize" {
         # These bindings trigger as soon as you enter the resize mode
 
@@ -130,10 +254,10 @@ mode "resize" {
         # Pressing right will grow the window’s width.
         # Pressing up will shrink the window’s height.
         # Pressing down will grow the window’s height.
-        bindsym l resize shrink width 10 px or 10 ppt
+        bindsym j resize shrink width 10 px or 10 ppt
         bindsym k resize grow height 10 px or 10 ppt
-        bindsym j resize shrink height 10 px or 10 ppt
-        bindsym h resize grow width 10 px or 10 ppt
+        bindsym l resize shrink height 10 px or 10 ppt
+        bindsym ntilde resize grow width 10 px or 10 ppt
 
         # same bindings, but for the arrow keys
         bindsym Left resize shrink width 10 px or 10 ppt
@@ -147,10 +271,41 @@ mode "resize" {
         bindsym $mod+r mode "default"
 }
 
-#####################################################################################
-# Old-binds
-#####################################################################################
-bindsym $mod+Left focus left
-bindsym $mod+Down focus down
-bindsym $mod+Up focus up
-bindsym $mod+Right focus right
+#######################################################################
+#                               Autostart                             #
+#######################################################################
+
+# Notifications
+# exec --no-startup-id dunst -conf /home/jorge/.config/dunst/catppuccinrc &
+
+# Systrays
+# exec --no-startup-id nm-applet &
+# exec --no-startup-id volumeicon &
+# exec --no-startup-id cbatticon -i standard BAT1 &
+
+# Polybar
+exec_always --no-startup-id $HOME/.config/polybar/launch.sh
+
+# Start picom
+exec --no-startup-id picom --config ~/.config/picom/picom.conf -b -f & 
+
+exec flameshot &
+
+# Start any status bar
+# exec_always --no-startup-id yabar &
+#bar {
+	#status_command i3status | ~/Code/Github/i3spotifystatus/pystatus.py
+	#strip_workspace_numbers yes
+	#workspace_min_width 40
+	#tray_output eDP1
+	#position top
+	#workspace_buttons yes
+	#height 27
+ 	#font pango:SpaceMono Nerd Font 12
+ 	#colors {
+		#background #302D41
+		#separator #D9E0EE
+		#focused_workspace #302D41 #302D41 #D9E0EE
+		#active_workspace #1E1E2E #1E1E2E #808080
+ #}
+#}
