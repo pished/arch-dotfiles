@@ -13,7 +13,7 @@
 | Window Manager     | [bspwm](https://github.com/baskerville/bspwm)                  |
 | Bar                | [polybar](https://github.com/jaagr/polybar)                    |
 | Program Launcher   | [rofi](https://github.com/DaveDavenport/rofi)                  |
-| Web Browser        | [???](https://www.mozilla.org/en-US/firefox/new/)          |
+| Web Browser        | [google-chrome](https://www.google.com/chrome/)          |
 | Code Editor        | [Nvim](https://neovim.io/)                                     |
 | Terminal font      | [FiraCode Nerd Font](https://www.nerdfonts.com/font-downloads) |
 | Shell              | [zsh](https://www.zsh.org/)                                    |
